@@ -1,0 +1,167 @@
+﻿<Page x:Class="LinuxGate.ChooseDistro"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      Title="Choose a Distribution"
+      xmlns:local="clr-namespace:LinuxGate">
+
+    <Page.Resources>
+        <Style x:Key="DistroCard" TargetType="Border">
+            <Setter Property="Background" Value="#2a273f"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#363252"/>
+                </Trigger>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="BorderBrush" Value="#3e8fb0"/>
+                    <Setter Property="Background" Value="#363252"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#232136">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0"
+               Content="{DynamicResource ChooseDistroTitle}"
+               HorizontalAlignment="Center"
+               Margin="20"
+               FontSize="48"
+               FontWeight="Light"
+               Foreground="#E0DEF4">
+            <Label.LayoutTransform>
+                <ScaleTransform x:Name="LabelScale"
+                               ScaleX="1"
+                               ScaleY="1"/>
+            </Label.LayoutTransform>
+        </Label>
+
+        <!-- Partition Warning Panel -->
+        <Border x:Name="PartitionWarningPanel"
+                Grid.Row="1"
+                Background="#2a273f"
+                CornerRadius="8"
+                Padding="20"
+                Margin="20,0,20,15"
+                BorderBrush="#f6c177"
+                BorderThickness="2"
+                Visibility="Collapsed">
+            <StackPanel>
+                <TextBlock Text="{DynamicResource PartitionWarningTitle}"
+                           Foreground="#f6c177"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,10"/>
+
+                <TextBlock x:Name="PartitionWarningText"
+                           Foreground="#E0DEF4"
+                           FontSize="14"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,10"/>
+
+                <TextBlock Text="{DynamicResource PartitionWarningMessage}"
+                           Foreground="#eb6f92"
+                           FontSize="12"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,15"/>
+
+                <CheckBox x:Name="PartitionWarningCheckbox"
+                          Foreground="#E0DEF4"
+                          FontSize="14"
+                          Checked="PartitionWarningCheckbox_Changed"
+                          Unchecked="PartitionWarningCheckbox_Changed">
+                    <TextBlock Text="{DynamicResource PartitionWarningCheckbox}"
+                               TextWrapping="Wrap"
+                               Foreground="#E0DEF4"/>
+                </CheckBox>
+            </StackPanel>
+        </Border>
+
+        <ScrollViewer Grid.Row="2" 
+                      VerticalScrollBarVisibility="Auto" 
+                      HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl x:Name="DistrosItemsControl">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource DistroCard}"
+                                Width="300"
+                                MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                
+                                <Image Source="{Binding ImageUrl}" 
+                                       Height="150" 
+                                       Stretch="Uniform"
+                                       Margin="0,0,0,10"/>
+                                
+                                <StackPanel Grid.Row="1">
+                                    <TextBlock Text="{Binding Name}"
+                                               FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="#E0DEF4"
+                                               Margin="0,0,0,5"
+                                               TextWrapping="Wrap"
+                                               LineHeight="24"
+                                               TextAlignment="Center"/>
+                                    <TextBlock Text="{Binding Description}"
+                                               Foreground="#E0DEF4"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                                
+                                <Border Grid.Row="2"
+                                        Height="4"
+                                        Margin="0,10,0,0"
+                                        Background="#3e8fb0"
+                                        Opacity="0">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="Opacity" Value="1"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Button Grid.Row="3"
+                x:Name="NextButton"
+                Content="{DynamicResource Next}"
+                Style="{StaticResource ModernButton}"
+                Width="200"
+                Height="50"
+                Margin="20"
+                HorizontalAlignment="Right"
+                Click="NextButton_Click"
+                IsEnabled="False"/>
+    </Grid>
+</Page>

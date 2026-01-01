@@ -1,0 +1,192 @@
+<Page x:Class="LinuxGate.Pages.AccountCreation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:LinuxGate.Pages"
+      mc:Ignorable="d"
+      Title="Create Account">
+
+    <Grid Background="#232136">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" 
+               Content="{DynamicResource AccountCreationTitle}" 
+               HorizontalAlignment="Center" 
+               Margin="20"
+               FontSize="48"
+               FontWeight="Light"
+               Foreground="#E0DEF4"/>
+
+        <StackPanel Grid.Row="1" 
+                    Width="400"
+                    VerticalAlignment="Center">
+            
+            <!-- Username -->
+            <Label Content="{DynamicResource Username}"
+                   Foreground="#E0DEF4"
+                   FontSize="16"
+                   Margin="0,0,0,5"/>
+            <TextBox x:Name="UsernameBox"
+                     Height="40"
+                     FontSize="16"
+                     Padding="10,5"
+                     Background="#2a273f"
+                     Foreground="#E0DEF4"
+                     BorderBrush="#363252"
+                     BorderThickness="1"
+                     HorizontalContentAlignment="Left"
+                     VerticalContentAlignment="Center"
+                     TextChanged="ValidateInput">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#3e8fb0"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#3e8fb0"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBlock x:Name="UsernameError"
+                       Foreground="#eb6f92"
+                       Margin="0,5,0,15"
+                       TextWrapping="Wrap"/>
+
+            <!-- Password -->
+            <Label Content="{DynamicResource Password}"
+                   Foreground="#E0DEF4"
+                   FontSize="16"
+                   Margin="0,0,0,5"/>
+            <PasswordBox x:Name="PasswordBox"
+                         Height="40"
+                         FontSize="16"
+                         Padding="10,5"
+                         Background="#2a273f"
+                         Foreground="#E0DEF4"
+                         BorderBrush="#363252"
+                         BorderThickness="1"
+                         HorizontalContentAlignment="Left"
+                         VerticalContentAlignment="Center"
+                         PasswordChanged="ValidateInput"
+                         CommandManager.PreviewExecuted="PasswordBox_PreviewExecuted">
+                <PasswordBox.Style>
+                    <Style TargetType="PasswordBox">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#3e8fb0"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#3e8fb0"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </PasswordBox.Style>
+            </PasswordBox>
+            <TextBlock x:Name="PasswordError"
+                       Foreground="#eb6f92"
+                       Margin="0,5,0,15"
+                       TextWrapping="Wrap"/>
+
+            <!-- Confirm Password -->
+            <Label Content="{DynamicResource ConfirmPassword}"
+                   Foreground="#E0DEF4"
+                   FontSize="16"
+                   Margin="0,0,0,5"/>
+            <PasswordBox x:Name="ConfirmPasswordBox"
+                         Height="40"
+                         FontSize="16"
+                         Padding="10,5"
+                         Background="#2a273f"
+                         Foreground="#E0DEF4"
+                         BorderBrush="#363252"
+                         BorderThickness="1"
+                         HorizontalContentAlignment="Left"
+                         VerticalContentAlignment="Center"
+                         PasswordChanged="ValidateInput"
+                         CommandManager.PreviewExecuted="PasswordBox_PreviewExecuted">
+                <PasswordBox.Style>
+                    <Style TargetType="PasswordBox">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#3e8fb0"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#3e8fb0"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </PasswordBox.Style>
+            </PasswordBox>
+            <TextBlock x:Name="ConfirmPasswordError"
+                       Foreground="#eb6f92"
+                       Margin="0,5,0,15"
+                       TextWrapping="Wrap"/>
+
+            <!-- Hostname -->
+            <Label Content="{DynamicResource ComputerName}"
+                   Foreground="#E0DEF4"
+                   FontSize="16"
+                   Margin="0,0,0,5"/>
+            <TextBox x:Name="HostnameBox"
+                     Height="40"
+                     FontSize="16"
+                     Padding="10,5"
+                     Background="#2a273f"
+                     Foreground="#E0DEF4"
+                     BorderBrush="#363252"
+                     BorderThickness="1"
+                     HorizontalContentAlignment="Left"
+                     VerticalContentAlignment="Center"
+                     TextChanged="ValidateInput">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#3e8fb0"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#3e8fb0"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBlock x:Name="HostnameError"
+                       Foreground="#eb6f92"
+                       Margin="0,5,0,15"
+                       TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Content="{DynamicResource Back}"
+                    Style="{StaticResource ModernButton}"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="BackButton_Click"/>
+                    
+            <Button x:Name="NextButton"
+                    Grid.Column="1"
+                    Content="{DynamicResource Next}"
+                    Style="{StaticResource ModernButton}"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Right"
+                    Click="NextButton_Click"
+                    IsEnabled="False"/>
+        </Grid>
+    </Grid>
+</Page>

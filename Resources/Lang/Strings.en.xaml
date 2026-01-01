@@ -1,0 +1,83 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
+    <!-- MainWindow -->
+    <system:String x:Key="Welcome">Welcome to LinuxGate!</system:String>
+    <system:String x:Key="Subtitle">A simple and modern Linux installer</system:String>
+    <system:String x:Key="GetStarted">Get Started</system:String>
+    <system:String x:Key="Language">Language</system:String>
+
+    <!-- ChooseDistro -->
+    <system:String x:Key="ChooseDistroTitle">Choose your flavor of Linux!</system:String>
+    
+    <!-- Distro Descriptions -->
+    <system:String x:Key="ZorinDescription">A powerful, secure and easy to use operating system designed for everyone.</system:String>
+    <system:String x:Key="UbuntuDescription">Fast, free and full of new features. Ubuntu is the world's favourite Linux operating system.</system:String>
+
+    <!-- ResizeDisk -->
+    <system:String x:Key="ResizeDiskTitle">Resize Your Disk</system:String>
+    <system:String x:Key="Windows">Windows</system:String>
+    <system:String x:Key="Linux">Linux</system:String>
+    <system:String x:Key="NotEnoughSpace">Not enough space available</system:String>
+    <system:String x:Key="FreeUpSpace">Your system needs more free space to install Linux. Please free up some space and try again.</system:String>
+    <system:String x:Key="OpenDiskCleanup">Open Disk Cleanup</system:String>
+
+    <!-- AccountCreation -->
+    <system:String x:Key="AccountCreationTitle">Create Your Linux Account</system:String>
+    <system:String x:Key="Username">Username</system:String>
+    <system:String x:Key="Password">Password</system:String>
+    <system:String x:Key="ConfirmPassword">Confirm Password</system:String>
+    <system:String x:Key="ComputerName">Computer Name</system:String>
+
+    <!-- Common -->
+    <system:String x:Key="Back">Back</system:String>
+    <system:String x:Key="Next">Next</system:String>
+    
+    <!-- Errors -->
+    <system:String x:Key="DistroLoadError">Failed to load the list of distributions. Please check your internet connection and try again.</system:String>
+
+    <!-- Password Validation -->
+    <system:String x:Key="PasswordRequired">Password is required</system:String>
+    <system:String x:Key="PasswordTooShort">Password must be at least 4 characters</system:String>
+    <system:String x:Key="PasswordTooLong">Password must be 8 characters or less</system:String>
+
+    <!-- Partition Warning -->
+    <system:String x:Key="PartitionWarningTitle">WARNING: Non-standard partition configuration</system:String>
+    <system:String x:Key="PartitionWarningMessage">This installer has NOT been tested on this partition layout. Continuing is HIGHLY DISCOURAGED unless you know EXACTLY what you are doing.</system:String>
+    <system:String x:Key="PartitionWarningCheckbox">I understand</system:String>
+
+    <!-- Warning Confirmation -->
+    <system:String x:Key="WarningTitle">Warning</system:String>
+    <system:String x:Key="WarningMessage">You are about to make significant changes to your disk partitions. This operation will modify your hard drive and install a dual-boot system alongside Windows.</system:String>
+    <system:String x:Key="WarningRisks">RISKS:
+- Data loss if the operation fails or is interrupted
+- Potential corruption of existing Windows installation
+- Your computer may not boot if something goes wrong
+- This operation CANNOT be undone easily</system:String>
+    <system:String x:Key="WarningRecommendations">RECOMMENDATIONS:
+- Back up all your important data before proceeding
+- Ensure your laptop is plugged in (do not rely on battery)
+- Have a Windows recovery USB ready
+- Have someone with technical knowledge available if needed
+- Do NOT interrupt the installation process once started</system:String>
+    <system:String x:Key="WarningConfirmCheckbox">I understand the risks and have backed up my important data</system:String>
+    <system:String x:Key="WarningConfirmButton">I Understand</system:String>
+
+    <!-- Apply Changes -->
+    <system:String x:Key="ApplyChangesTitle">Apply Changes</system:String>
+    <system:String x:Key="ApplyChangesWaiting">Ready to start partitioning</system:String>
+    <system:String x:Key="ApplyChangesSummary">Installation Summary</system:String>
+    <system:String x:Key="ApplyChangesDistro">Distribution:</system:String>
+    <system:String x:Key="ApplyChangesLinuxSize">Linux Space:</system:String>
+    <system:String x:Key="ApplyChangesUsername">Username:</system:String>
+    <system:String x:Key="ApplyChangesStart">Start Installation</system:String>
+    <system:String x:Key="ApplyChangesStep1">Shrinking Windows partition (2GB for boot)...</system:String>
+    <system:String x:Key="ApplyChangesStep2">Creating FAT32 boot partition (Z:)...</system:String>
+    <system:String x:Key="ApplyChangesWaitDisk">Waiting for disk update...</system:String>
+    <system:String x:Key="ApplyChangesStep3">Shrinking Windows partition for Linux...</system:String>
+    <system:String x:Key="ApplyChangesComplete">Partitioning complete!</system:String>
+    <system:String x:Key="ApplyChangesError">An error occurred</system:String>
+    <system:String x:Key="ApplyChangesReboot">Reboot</system:String>
+    <system:String x:Key="ApplyChangesRebootConfirm">The computer will restart to complete the installation. Continue?</system:String>
+</ResourceDictionary>

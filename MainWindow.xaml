@@ -1,0 +1,83 @@
+﻿<Window x:Class="LinuxGate.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LinuxGate"
+        mc:Ignorable="d"
+        Title="LinuxGate" 
+        Height="630" Width="1070"
+        MinHeight="630" MinWidth="1070"
+        WindowStartupLocation="CenterScreen">
+
+    <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="#232136">
+        <Frame.Content>
+            <Grid Background="#232136">
+                <StackPanel VerticalAlignment="Center">
+                    <Label Content="{DynamicResource Welcome}" 
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,40"
+                           FontSize="72"
+                           FontWeight="Light"
+                           Foreground="#E0DEF4"/>
+                    
+                    <Label Content="{DynamicResource Subtitle}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20"
+                           FontSize="16"
+                           FontWeight="Light"
+                           Foreground="#908CAA"/>
+
+                    <Button Content="{DynamicResource GetStarted}"
+                            Style="{StaticResource ModernButton}"
+                            Width="200"
+                            Height="50"
+                            HorizontalAlignment="Center"
+                            Margin="0,0,0,40"
+                            Click="Button_Click"/>
+
+                    <StackPanel Orientation="Horizontal"
+                              HorizontalAlignment="Center">
+                        <TextBlock Text="{DynamicResource Language}"
+                                 Foreground="#E0DEF4"
+                                 FontSize="16"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,10,0"/>
+                        <ComboBox x:Name="LanguageComboBox"
+                                 Width="120"
+                                 Style="{StaticResource ModernComboBox}"
+                                 SelectionChanged="LanguageComboBox_SelectionChanged">
+                            <ComboBoxItem Content="English" Tag="en" IsSelected="True" Style="{StaticResource ModernComboBoxItem}"/>
+                            <ComboBoxItem Content="Français" Tag="fr" Style="{StaticResource ModernComboBoxItem}"/>
+                            <ComboBoxItem Content="Español" Tag="es" Style="{StaticResource ModernComboBoxItem}"/>
+                            <ComboBoxItem Content="日本語" Tag="ja" Style="{StaticResource ModernComboBoxItem}"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- Debug Navigation -->
+                    <StackPanel x:Name="DebugPanel"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="0,30,0,0"
+                                Visibility="Collapsed">
+                        <TextBlock Text="DEBUG: Go to page"
+                                 Foreground="#eb6f92"
+                                 FontSize="14"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,10,0"/>
+                        <ComboBox x:Name="DebugPageComboBox"
+                                 Width="180"
+                                 Style="{StaticResource ModernComboBox}"
+                                 SelectionChanged="DebugPageComboBox_SelectionChanged">
+                            <ComboBoxItem Content="ChooseDistro" Tag="ChooseDistro" Style="{StaticResource ModernComboBoxItem}"/>
+                            <ComboBoxItem Content="ResizeDisk" Tag="ResizeDisk" Style="{StaticResource ModernComboBoxItem}"/>
+                            <ComboBoxItem Content="AccountCreation" Tag="AccountCreation" Style="{StaticResource ModernComboBoxItem}"/>
+                            <ComboBoxItem Content="WarningConfirmation" Tag="WarningConfirmation" Style="{StaticResource ModernComboBoxItem}"/>
+                            <ComboBoxItem Content="ApplyChanges" Tag="ApplyChanges" Style="{StaticResource ModernComboBoxItem}"/>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Frame.Content>
+    </Frame>
+</Window>

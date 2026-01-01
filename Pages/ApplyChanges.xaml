@@ -1,0 +1,101 @@
+<Page x:Class="LinuxGate.Pages.ApplyChanges"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:LinuxGate.Pages"
+      mc:Ignorable="d"
+      Title="ApplyChanges">
+
+    <Grid Background="#232136">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0"
+               Content="{DynamicResource ApplyChangesTitle}"
+               HorizontalAlignment="Center"
+               Margin="20"
+               FontSize="48"
+               FontWeight="Light"
+               Foreground="#E0DEF4"/>
+
+        <StackPanel Grid.Row="1"
+                    Width="600"
+                    VerticalAlignment="Center">
+
+            <!-- Progress Section -->
+            <Border x:Name="ProgressPanel"
+                    Background="#2a273f"
+                    CornerRadius="8"
+                    Padding="20"
+                    BorderBrush="#363252"
+                    BorderThickness="1">
+                <StackPanel>
+                    <!-- Current Step -->
+                    <TextBlock x:Name="CurrentStepText"
+                               Text="{DynamicResource ApplyChangesWaiting}"
+                               Foreground="#E0DEF4"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,15"/>
+
+                    <!-- Progress Bar -->
+                    <ProgressBar x:Name="ProgressBar"
+                                 Height="20"
+                                 Minimum="0"
+                                 Maximum="100"
+                                 Value="0"
+                                 Foreground="#3e8fb0"
+                                 Background="#363252"/>
+
+                    <!-- Progress Percentage -->
+                    <TextBlock x:Name="ProgressText"
+                               Text="0%"
+                               Foreground="#908CAA"
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,0"/>
+
+                    <!-- Log Output -->
+                    <TextBox x:Name="LogOutput"
+                             Height="180"
+                             Margin="0,20,0,0"
+                             Background="#1e1c31"
+                             Foreground="#908CAA"
+                             BorderBrush="#363252"
+                             BorderThickness="1"
+                             FontFamily="Consolas"
+                             FontSize="12"
+                             IsReadOnly="True"
+                             VerticalScrollBarVisibility="Auto"
+                             TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Summary Section -->
+        </StackPanel>
+
+        <Grid Grid.Row="2" Margin="20">
+            <Button x:Name="BackButton"
+                    Content="{DynamicResource Back}"
+                    Style="{StaticResource ModernButton}"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="BackButton_Click"/>
+
+            <Button x:Name="RebootButton"
+                    Content="{DynamicResource ApplyChangesReboot}"
+                    Style="{StaticResource ModernButton}"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Right"
+                    Visibility="Collapsed"
+                    Click="RebootButton_Click"/>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,83 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
+    <!-- MainWindow -->
+    <system:String x:Key="Welcome">LinuxGateへようこそ！</system:String>
+    <system:String x:Key="Subtitle">シンプルでモダンなLinuxインストーラー</system:String>
+    <system:String x:Key="GetStarted">始める</system:String>
+    <system:String x:Key="Language">言語</system:String>
+
+    <!-- ChooseDistro -->
+    <system:String x:Key="ChooseDistroTitle">お好みのLinuxディストリビューションを選ぶ</system:String>
+    
+    <!-- Distro Descriptions -->
+    <system:String x:Key="ZorinDescription">誰でも使える、安全で使いやすい強力なオペレーティングシステム。</system:String>
+    <system:String x:Key="UbuntuDescription">高速、無料、新機能が充実。世界で最も人気のあるLinuxオペレーティングシステム。</system:String>
+
+    <!-- ResizeDisk -->
+    <system:String x:Key="ResizeDiskTitle">ディスクのサイズを変更</system:String>
+    <system:String x:Key="Windows">Windows</system:String>
+    <system:String x:Key="Linux">Linux</system:String>
+    <system:String x:Key="NotEnoughSpace">空き領域が不足しています</system:String>
+    <system:String x:Key="FreeUpSpace">Linuxをインストールするにはさらに空き領域が必要です。不要なファイルを削除して再試行してください。</system:String>
+    <system:String x:Key="OpenDiskCleanup">ディスククリーンアップを開く</system:String>
+
+    <!-- AccountCreation -->
+    <system:String x:Key="AccountCreationTitle">Linuxアカウントを作成</system:String>
+    <system:String x:Key="Username">ユーザー名</system:String>
+    <system:String x:Key="Password">パスワード</system:String>
+    <system:String x:Key="ConfirmPassword">パスワードの確認</system:String>
+    <system:String x:Key="ComputerName">コンピューター名</system:String>
+
+    <!-- Common -->
+    <system:String x:Key="Back">戻る</system:String>
+    <system:String x:Key="Next">次へ</system:String>
+    
+    <!-- Errors -->
+    <system:String x:Key="DistroLoadError">ディストリビューションのリストを読み込めませんでした。インターネット接続を確認して、もう一度お試しください。</system:String>
+
+    <!-- Password Validation -->
+    <system:String x:Key="PasswordRequired">パスワードは必須です</system:String>
+    <system:String x:Key="PasswordTooShort">パスワードは4文字以上必要です</system:String>
+    <system:String x:Key="PasswordTooLong">パスワードは8文字以内にしてください</system:String>
+
+    <!-- Partition Warning -->
+    <system:String x:Key="PartitionWarningTitle">警告：非標準のパーティション構成</system:String>
+    <system:String x:Key="PartitionWarningMessage">このインストーラーはこのパーティション構成でテストされていません。正確に何をしているか理解していない限り、続行は強くお勧めしません。</system:String>
+    <system:String x:Key="PartitionWarningCheckbox">理解しました</system:String>
+
+    <!-- Warning Confirmation -->
+    <system:String x:Key="WarningTitle">警告</system:String>
+    <system:String x:Key="WarningMessage">ディスクパーティションに重大な変更を加えようとしています。この操作はハードドライブを変更し、Windowsと共にデュアルブートシステムをインストールします。</system:String>
+    <system:String x:Key="WarningRisks">リスク：
+- 操作が失敗または中断された場合のデータ損失
+- 既存のWindowsインストールが破損する可能性
+- 問題が発生するとコンピューターが起動しなくなる可能性
+- この操作は簡単に元に戻すことができません</system:String>
+    <system:String x:Key="WarningRecommendations">推奨事項：
+- 続行する前にすべての重要なデータをバックアップしてください
+- ノートパソコンは電源に接続してください（バッテリーに頼らないでください）
+- Windows回復USBを用意してください
+- 必要に応じて技術的な知識のある人を近くに用意してください
+- インストールプロセスが開始したら中断しないでください</system:String>
+    <system:String x:Key="WarningConfirmCheckbox">リスクを理解し、重要なデータをバックアップしました</system:String>
+    <system:String x:Key="WarningConfirmButton">理解しました、続行</system:String>
+
+    <!-- Apply Changes -->
+    <system:String x:Key="ApplyChangesTitle">変更を適用</system:String>
+    <system:String x:Key="ApplyChangesWaiting">パーティション作成の準備完了</system:String>
+    <system:String x:Key="ApplyChangesSummary">インストール概要</system:String>
+    <system:String x:Key="ApplyChangesDistro">ディストリビューション:</system:String>
+    <system:String x:Key="ApplyChangesLinuxSize">Linux領域:</system:String>
+    <system:String x:Key="ApplyChangesUsername">ユーザー名:</system:String>
+    <system:String x:Key="ApplyChangesStart">インストール開始</system:String>
+    <system:String x:Key="ApplyChangesStep1">Windowsパーティションを縮小中（ブート用2GB）...</system:String>
+    <system:String x:Key="ApplyChangesStep2">FAT32ブートパーティションを作成中（Z:）...</system:String>
+    <system:String x:Key="ApplyChangesWaitDisk">ディスク更新を待機中...</system:String>
+    <system:String x:Key="ApplyChangesStep3">Linux用にWindowsパーティションを縮小中...</system:String>
+    <system:String x:Key="ApplyChangesComplete">パーティション作成完了！</system:String>
+    <system:String x:Key="ApplyChangesError">エラーが発生しました</system:String>
+    <system:String x:Key="ApplyChangesReboot">再起動</system:String>
+    <system:String x:Key="ApplyChangesRebootConfirm">インストールを完了するためにコンピューターを再起動します。続行しますか？</system:String>
+</ResourceDictionary>

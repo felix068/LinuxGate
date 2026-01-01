@@ -1,0 +1,100 @@
+﻿<Page x:Class="LinuxGate.Pages.WarningConfirmation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:LinuxGate.Pages"
+      mc:Ignorable="d"
+      Title="Warning">
+
+    <Grid Background="#232136">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0"
+               Content="Warning ⚠"
+               HorizontalAlignment="Center"
+               Margin="20"
+               FontSize="48"
+               FontWeight="Light"
+               Foreground="#eb6f92"/>
+
+        <StackPanel Grid.Row="1"
+                    Width="600"
+                    VerticalAlignment="Center">
+
+            <!-- Warning Icon -->
+
+            <!-- Warning Message -->
+            <!-- Warning Icon -->
+
+            <!-- Warning Message -->
+            <Border Background="#2a273f"
+                    CornerRadius="8"
+                    Padding="20"
+                    BorderBrush="#eb6f92"
+                    BorderThickness="2">
+                <StackPanel>
+                    <TextBlock Text="{DynamicResource WarningMessage}"
+                               Foreground="#E0DEF4"
+                               FontSize="16"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               Margin="0,0,0,15"/>
+
+                    <TextBlock Text="{DynamicResource WarningRisks}"
+                               Foreground="#f6c177"
+                               FontSize="14"
+                               TextWrapping="Wrap"
+                               TextAlignment="Left"
+                               Margin="0,0,0,15"/>
+
+                    <TextBlock Text="{DynamicResource WarningRecommendations}"
+                               Foreground="#9ccfd8"
+                               FontSize="14"
+                               TextWrapping="Wrap"
+                               TextAlignment="Left"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Confirmation Checkbox -->
+            <CheckBox x:Name="ConfirmCheckBox"
+                      Margin="0,20,0,0"
+                      Foreground="#E0DEF4"
+                      FontSize="14"
+                      Checked="ConfirmCheckBox_Changed"
+                      Unchecked="ConfirmCheckBox_Changed">
+                <TextBlock Text="{DynamicResource WarningConfirmCheckbox}"
+                           TextWrapping="Wrap"
+                           Foreground="#E0DEF4"/>
+            </CheckBox>
+        </StackPanel>
+
+        <Grid Grid.Row="2" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="{DynamicResource Back}"
+                    Style="{StaticResource ModernButton}"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    Click="BackButton_Click"/>
+
+            <Button x:Name="ConfirmButton"
+                    Grid.Column="1"
+                    Content="{DynamicResource WarningConfirmButton}"
+                    Style="{StaticResource ModernButton}"
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Right"
+                    Click="ConfirmButton_Click"
+                    IsEnabled="False"/>
+        </Grid>
+    </Grid>
+</Page>
