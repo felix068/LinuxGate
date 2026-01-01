@@ -9,9 +9,9 @@ A modern, user-friendly Windows application that simplifies the process of dual-
 
 The software is now working and can successfully set up a dual-boot environment. However, please be aware of the following limitations:
 
-- ⚠️ **BIOS mode only** – UEFI mode has not been tested yet and may not work correctly
-- ⚠️ **Not production-ready** – Use at your own risk, preferably on test machines
-- ⚠️ **Backup recommended** – Always backup your data before attempting any dual-boot installation
+- ⚠️ **BIOS mode only** – UEFI mode has not been tested yet and may not work correctly.
+- ⚠️ **Not production-ready** – Use at your own risk, preferably on test machines.
+- ⚠️ **Backup recommended** – Always backup your data before attempting any dual-boot installation.
 
 We are actively working on UEFI support and stability improvements. Contributions and bug reports are welcome!
 
