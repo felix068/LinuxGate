@@ -129,6 +129,11 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\ScaleConverter.cs" />
+    <Compile Include="Services\DiskService.cs" />
+    <Compile Include="Services\DownloadService.cs" />
+    <Compile Include="Services\IsoService.cs" />
+    <Compile Include="Services\BootConfigService.cs" />
+    <Compile Include="Services\ConfigService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\ResizeDisk.xaml.cs">

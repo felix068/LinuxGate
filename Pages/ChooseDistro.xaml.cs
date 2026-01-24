@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -7,14 +7,12 @@ using System.Windows.Input;
 using LinuxGate.Helpers;
 using LinuxGate.Models;
 using LinuxGate.Pages;
+using LinuxGate.Services;
 using System.ComponentModel;
 using System.Windows.Media.Animation;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
-using System.Text.RegularExpressions;
 
 namespace LinuxGate
 {
@@ -27,6 +25,8 @@ namespace LinuxGate
         private bool _isDistroSelected;
         private bool _partitionConfigValid = true;
         private bool _partitionWarningAcknowledged = false;
+
+        private readonly DiskService _diskService;
 
         public bool IsDistroSelected
         {
@@ -44,6 +44,7 @@ namespace LinuxGate
         {
             InitializeComponent();
             _distros = new ObservableCollection<DistroInfo>();
+            _diskService = new DiskService();
             LoadDistrosAsync();
             LoadState();
             DataContext = this;
@@ -63,7 +64,7 @@ namespace LinuxGate
                         PropertyNameCaseInsensitive = true
                     };
                     var distroList = JsonSerializer.Deserialize<List<DistroInfoJson>>(json, options);
-                    
+
                     _distros.Clear();
                     foreach (var distroJson in distroList)
                     {
@@ -98,7 +99,7 @@ namespace LinuxGate
                 {
                     PageType = typeof(ChooseDistro),
                     StateKey = STATE_KEY,
-                    State = _selectedDistro.Name // Save just the name of the selected distro
+                    State = _selectedDistro.Name
                 };
                 StateManager.SaveState(STATE_KEY, state);
             }
@@ -109,7 +110,6 @@ namespace LinuxGate
             var state = StateManager.GetState(STATE_KEY);
             if (state?.State is string selectedDistroName)
             {
-                // Find and select the previously selected distro
                 foreach (var distro in _distros)
                 {
                     if (distro.Name == selectedDistroName)
@@ -123,17 +123,14 @@ namespace LinuxGate
 
         private void SelectDistro(DistroInfo distro)
         {
-            // Deselect previous selection
             if (_selectedDistro != null)
             {
                 _selectedDistro.IsSelected = false;
             }
 
-            // Select new distro
             _selectedDistro = distro;
             _selectedDistro.IsSelected = true;
 
-            // Update next button state (considers partition validation)
             UpdateNextButtonState();
         }
 
@@ -207,7 +204,7 @@ namespace LinuxGate
 
         private async void CheckPartitionConfigurationAsync()
         {
-            var (isValid, warnings) = await ValidatePartitionLayoutAsync();
+            var (isValid, warnings) = await _diskService.ValidatePartitionLayoutAsync();
 
             _partitionConfigValid = isValid;
 
@@ -229,164 +226,9 @@ namespace LinuxGate
 
         private void UpdateNextButtonState()
         {
-            // Button is enabled if:
-            // 1. A distro is selected AND
-            // 2. Either partition config is valid OR user acknowledged the warning
             bool canProceed = _selectedDistro != null &&
                               (_partitionConfigValid || _partitionWarningAcknowledged);
             NextButton.IsEnabled = canProceed;
-        }
-
-        private async Task<(bool isValid, List<string> warnings)> ValidatePartitionLayoutAsync()
-        {
-            var warnings = new List<string>();
-
-            string diskpartScript = Path.Combine(Path.GetTempPath(), $"check_partitions_{Guid.NewGuid()}.txt");
-
-            try
-            {
-                string script = @"select disk 0
-list partition
-exit";
-
-                File.WriteAllText(diskpartScript, script);
-                string output = await RunDiskpartAndGetOutputAsync(diskpartScript);
-
-                var partitions = ParsePartitionList(output);
-
-                // Check 1: Should have exactly 3 partitions
-                if (partitions.Count > 3)
-                {
-                    warnings.Add($"Expected 3 partitions, found {partitions.Count}");
-                }
-                else if (partitions.Count < 3)
-                {
-                    warnings.Add($"Expected 3 partitions, found only {partitions.Count}");
-                }
-
-                // Check 2: First partition should be between 40-150MB (EFI/System)
-                if (partitions.Count > 0)
-                {
-                    var firstPartition = partitions[0];
-                    if (firstPartition.SizeMB < 40 || firstPartition.SizeMB > 150)
-                    {
-                        warnings.Add($"First partition size is {firstPartition.SizeMB:F0}MB (expected 40-150MB for System)");
-                    }
-                }
-
-                // Check 3: Last partition should be between 400-700MB (Recovery)
-                if (partitions.Count > 0)
-                {
-                    var lastPartition = partitions[partitions.Count - 1];
-                    if (lastPartition.SizeMB < 400 || lastPartition.SizeMB > 700)
-                    {
-                        warnings.Add($"Last partition size is {lastPartition.SizeMB:F0}MB (expected 400-700MB for Recovery)");
-                    }
-                }
-
-                return (warnings.Count == 0, warnings);
-            }
-            catch (Exception ex)
-            {
-                warnings.Add($"Error checking partitions: {ex.Message}");
-                return (false, warnings);
-            }
-            finally
-            {
-                if (File.Exists(diskpartScript))
-                    File.Delete(diskpartScript);
-            }
-        }
-
-        private class PartitionInfo
-        {
-            public int Number { get; set; }
-            public string Type { get; set; }
-            public double SizeMB { get; set; }
-        }
-
-        private List<PartitionInfo> ParsePartitionList(string output)
-        {
-            var partitions = new List<PartitionInfo>();
-            var lines = output.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (var line in lines)
-            {
-                var partitionMatch = Regex.Match(line, @"Partition\s+(\d+)", RegexOptions.IgnoreCase);
-                if (!partitionMatch.Success)
-                    continue;
-
-                int partitionNumber = int.Parse(partitionMatch.Groups[1].Value);
-
-                var sizeMatches = Regex.Matches(line, @"(\d+)\s*(G|M|K)\s*o?", RegexOptions.IgnoreCase);
-
-                if (sizeMatches.Count > 0)
-                {
-                    var sizeMatch = sizeMatches[0];
-                    double size = double.Parse(sizeMatch.Groups[1].Value);
-                    string unit = sizeMatch.Groups[2].Value.ToUpper();
-
-                    double sizeMB;
-                    switch (unit)
-                    {
-                        case "G":
-                            sizeMB = size * 1024;
-                            break;
-                        case "K":
-                            sizeMB = size / 1024;
-                            break;
-                        default:
-                            sizeMB = size;
-                            break;
-                    }
-
-                    string type = "Unknown";
-                    var typeMatch = Regex.Match(line, @"Partition\s+\d+\s+(\w+)", RegexOptions.IgnoreCase);
-                    if (typeMatch.Success)
-                    {
-                        type = typeMatch.Groups[1].Value;
-                    }
-
-                    partitions.Add(new PartitionInfo
-                    {
-                        Number = partitionNumber,
-                        Type = type,
-                        SizeMB = sizeMB
-                    });
-                }
-            }
-
-            return partitions;
-        }
-
-        private async Task<string> RunDiskpartAndGetOutputAsync(string scriptPath)
-        {
-            return await Task.Run(() =>
-            {
-                try
-                {
-                    var psi = new ProcessStartInfo
-                    {
-                        FileName = "diskpart.exe",
-                        Arguments = $"/s \"{scriptPath}\"",
-                        UseShellExecute = false,
-                        RedirectStandardOutput = true,
-                        RedirectStandardError = true,
-                        CreateNoWindow = true
-                    };
-
-                    using (var process = Process.Start(psi))
-                    {
-                        string output = process.StandardOutput.ReadToEnd();
-                        process.WaitForExit();
-                        return output;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    return $"Error: {ex.Message}";
-                }
-            });
         }
 
         #endregion

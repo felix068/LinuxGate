@@ -18,7 +18,7 @@ We are actively working on UEFI support and stability improvements. Contribution
 ## Project History
 This project was initially started by [MopigamesYT](https://github.com/MopigamesYT) but was abandoned and left incomplete (non-functional). 
 
-LinuxGate is based on the [LinuxGate project](https://github.com/ekimiateam/linuxgate), which was developed during a company internship. The LinuxGate project was also left unfinished and non-functional.
+LinuxGate is based on the [Libertix project](https://github.com/ekimiateam/libertix), which was developed during a company internship. The Libertix project was also left unfinished and non-functional.
 
 This version represents a complete rework aimed at creating a stable, functional dual-boot installer.
 
