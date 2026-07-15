@@ -1,36 +1,73 @@
 # LinuxGate
-A modern, user-friendly Windows application that simplifies the process of dual-booting Linux alongside Windows.
+
+> [!IMPORTANT]
+>
+> ## Project moved to Libertix
+>
+> This project has been moved to the **Libertix** repository.
+>
+> **All future development, releases, bug fixes, and updates are now published here:**
+>
+> **https://github.com/ekimiateam/libertix/tree/dev**
+>
+> This LinuxGate repository is no longer actively maintained. Please use the Libertix repository to download the latest version, report issues, or contribute to the project.
+
+LinuxGate was a modern, user-friendly Windows application designed to simplify the process of dual-booting Linux alongside Windows.
+
+The project is now maintained and developed as part of **Libertix**.
 
 ## 📥 Download
-**[Download LinuxGate v0.1.0-beta](https://github.com/felix068/LinuxGate/releases/download/v0.1.0-beta/LinuxGate.zip)**
 
-## ⚠️ Project Status - FUNCTIONAL BUT UNSTABLE
-**WARNING: This project is functional but NOT RECOMMENDED for production use.**
+New versions and updates are available from the Libertix repository:
 
-The software is now working and can successfully set up a dual-boot environment. However, please be aware of the following limitations:
+**[Go to the maintained Libertix project](https://github.com/ekimiateam/libertix/tree/dev)**
 
-- ⚠️ **BIOS mode only** – UEFI mode has not been tested yet and may not work correctly
-- ⚠️ **Not production-ready** – Use at your own risk, preferably on test machines
-- ⚠️ **Backup recommended** – Always backup your data before attempting any dual-boot installation
+The releases previously published in this repository are now considered outdated and should not be used for new installations.
 
-We are actively working on UEFI support and stability improvements. Contributions and bug reports are welcome!
+## ⚠️ Project Status — MOVED
+
+Development of this version of LinuxGate has stopped in this repository.
+
+The project has been transferred to:
+
+**[ekimiateam/libertix — dev branch](https://github.com/ekimiateam/libertix/tree/dev)**
+
+Please use the new repository for:
+
+* New versions and releases
+* Stability improvements
+* UEFI and BIOS support updates
+* Bug reports
+* Feature requests
+* Contributions and pull requests
+
+Do not open new issues or pull requests in this repository, as they may not be reviewed.
 
 ## Project History
-This project was initially started by [MopigamesYT](https://github.com/MopigamesYT) but was abandoned and left incomplete (non-functional). 
 
-LinuxGate is based on the [LinuxGate project](https://github.com/ekimiateam/linuxgate), which was developed during a company internship. The LinuxGate project was also left unfinished and non-functional.
+This project was initially started by [MopigamesYT](https://github.com/MopigamesYT), but it was abandoned and left incomplete and non-functional.
 
-This version represents a complete rework aimed at creating a stable, functional dual-boot installer.
+LinuxGate was later reworked using concepts and code from projects developed during a company internship.
+
+Development has now moved to the [Libertix project](https://github.com/ekimiateam/libertix/tree/dev), where the project continues to receive updates and improvements.
 
 ## License
-This project is licensed under the GNU General Public License 3.0 - see the [LICENSE](LICENSE) file for details.
+
+This project is licensed under the GNU General Public License 3.0. See the [LICENSE](LICENSE) file for details.
+
+The actively maintained Libertix project may contain additional licensing information. Please refer to its repository for the latest details.
 
 ## Acknowledgments
-- [Rose Pine](https://rosepinetheme.com/) for the color scheme
-- [WPF](https://github.com/dotnet/wpf) for the UI framework
-- Original concept by [MopigamesYT](https://github.com/MopigamesYT)
-- Based on [Libertix](https://github.com/ekimiateam/libertix) project
 
-## Star History
+* [Rose Pine](https://rosepinetheme.com/) for the color scheme
+* [WPF](https://github.com/dotnet/wpf) for the UI framework
+* Original concept by [MopigamesYT](https://github.com/MopigamesYT)
+* Continued development by the [Libertix project](https://github.com/ekimiateam/libertix/tree/dev)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=felix068/LinuxGate&type=date&legend=top-left)](https://www.star-history.com/#felix068/LinuxGate&type=date&legend=top-left)
+---
+
+## This repository is no longer maintained
+
+For the latest source code, releases, documentation, and updates, visit:
+
+### **https://github.com/ekimiateam/libertix/tree/dev**
